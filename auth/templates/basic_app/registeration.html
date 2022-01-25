@@ -1,0 +1,21 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+{% block body_block %}
+    <div class="p-5 my-5 text-white bg-dark rounded-3">
+        <div class="container-fluid py-4">
+            <h1 class="display-5 fw-bold">Welcome!</h1>
+            {% if registered %}
+            <p class="col-md-8 fs-4">Thank you for registering</p>
+            {% else %}
+            <p class="col-md-8 fs-4">Register Here!</p>
+            <p class="col-md-8 fs-4">Fill out the form</p>
+            <form enctype='multipart/form-data' method='post'>
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" value='Register'>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
